@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script>
+		function fn_search() {
+			let frmBook = document.frmBook;
+			
+			frmBook.method = "get";
+			frmBook.action = "book";
+			frmBook.submit();
+		}
+	</script>
+</head>
+
+<body>
+	<form name="frmBook">
+		<h2>도서 검색 폼</h2>
+		<input type="text" name="bookName" />
+		<input type="button" value="검색" onclick="fn_search()" >
+	</form>
+</body>
+
+</html>

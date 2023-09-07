@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script defer>
+		function inputFunc(e) {
+			if (e.keyCode === 13) { 
+				e.prventDefault()
+				searchBook()
+			}
+		}
+
+		function searchBook() {
+			let bookname = document.frmSearchBook.bookname.value;
+			return bookname ? frmSearchBook.submit() : alert("도서명을 입력하세요.");
+		}
+
+		document.querySelector('input').addEventListener('keydown', inputFunc)
+		document.querySelector('button').addEventListener('click', searchBook)
+	</script>
+</head>
+
+<body>
+	<form name="frmSearchBook" method="get" action="book">
+		<h2>도서 검색 폼</h2>
+		<input type="text" name="bookname" onkeydown="inputFunc" />
+		<button type="button" onclick="searchBook()">검색</button>
+	</form>
+</body>
+
+</html>

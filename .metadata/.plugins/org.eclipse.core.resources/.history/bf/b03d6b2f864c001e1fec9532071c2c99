@@ -1,0 +1,40 @@
+package sec01.ex01;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class BookSearchServlet
+ */
+@WebServlet("/book")
+public class BookSearchServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
+
+		BookDAO dao = new BookDAO();
+		BookVO vo = new BookVO();
+
+		String bookName = request.getParameter("bookName");
+		vo.setBookName(bookName);
+		List<BookVO> bookList = dao.searchBook(vo);
+
+		PrintWriter out = response.getWriter();
+		
+		if (bookList.size() == 0) {}
+		
+		out.print("<table border=1><tr>");
+		out.print("<td>아이디</td><td>책이름</td><td>출판사</td><td>가격</td>");
+	}
+
+}

@@ -1,0 +1,48 @@
+package sec01.ex01;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+public class BookDAO extends DBInitializer {
+
+	public BookDAO() {
+		super();
+	}
+
+	public List<BookVO> searchBook(String bookName) {
+		List<BookVO> bookList = new ArrayList<BookVO>();
+		
+		try {
+			conn = dataFactory.getConnection();
+			String query = "SELECT * FROM books WHERE book_name LIKE concat('%', ?, '%')";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bookName);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int _bookId = rs.getInt("book_id");
+				String _bookName = rs.getString("book_name");
+				String _bookCompany = rs.getString("book_company");
+				int _bookPrice = rs.getInt("book_price");
+					
+				BookVO vo = new BookVO();
+				
+				vo.setBookId(_bookId);
+				vo.setBookName(_bookName);
+				vo.setBookCompany(_bookCompany);
+				vo.setBookPrice(_bookPrice);
+				
+				bookList.add(vo);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return bookList;
+	}
+
+}

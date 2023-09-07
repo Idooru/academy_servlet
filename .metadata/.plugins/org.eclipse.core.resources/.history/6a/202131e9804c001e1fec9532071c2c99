@@ -1,0 +1,17 @@
+package sec01.ex01;
+
+public class BookDAO extends DBInitializer {
+
+	public BookDAO() {
+		super();
+	}
+
+	public void searchBook(BookVO vo) {
+		try {
+			conn = dataFactory.getConnection();
+			String query = "SELECT * FROM books WHERE name LIKE ?%";
+		} catch (Exception e) {
+		}
+	}
+
+}

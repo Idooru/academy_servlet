@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script>
+
+	</script>
+</head>
+
+<body>
+	<form name="frmBook">
+		<h2>도서 검색 폼</h2>
+		<table>
+			
+		</table>
+	</form>
+</body>
+
+</html>

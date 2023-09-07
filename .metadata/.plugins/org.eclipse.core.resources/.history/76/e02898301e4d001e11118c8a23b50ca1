@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script>
+		let bookname = document.frmSearchBook.bookname.value;
+		
+		function searchBook() {
+			
+			return bookname ? frmSearchBook.submit() : alert("도서명을 입력하세요.");
+		}
+
+		function inputFunc() {
+			alert("Hello");
+		}
+	</script>
+</head>
+
+<body>
+	<form name="frmSearchBook" method="get" action="book">
+		<h2>도서 검색 폼</h2>
+		<input type="text" name="bookname" onkeydown="inputFunc()" />
+		<button type="button" onclick="searchBook()">검색</button>
+	</form>
+</body>
+
+</html>

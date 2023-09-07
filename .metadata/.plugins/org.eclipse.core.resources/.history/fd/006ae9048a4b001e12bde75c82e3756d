@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>JOIN FORM</title>
+	<script type="text/javascript">
+		function fn_sendMember() {
+			let frmMember = document.frmMember;
+			let id = frmMember.id.value;
+			let pwd = frmMember.pwd.value;
+			let name = frmMember.name.value;
+			let email = frmMember.email.value;
+
+			if (!id) {
+				alert("아이디는 필수입니다.");
+			} else if (!pwd) {
+				alert("비밀번호는 필수입니다.");
+			} else if (!name) {
+				alert("이름은 필수입니다.");
+			} else if (!email) {
+				alert("이메일은 필수입니다.");
+			} else {
+				frmMember.method = "post";
+				frmMember.action = "Member";
+				frmMember.submit();
+			}
+
+
+		}
+	</script>
+</head>
+
+<body>
+
+	<form name="frmMember">
+		<h2>회원가입</h2>
+		<table>
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name="id" /></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="pwd" /></td>
+			</tr>
+			<tr>
+				<td>이름</td>
+				<td><input type="text" name="name" /></td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td><input type="email" name="email" /></td>
+			</tr>
+		</table>
+		<input type="button" value="가입하기" onclick="fn_sendMember()" />
+	</form>
+</body>
+
+</html>

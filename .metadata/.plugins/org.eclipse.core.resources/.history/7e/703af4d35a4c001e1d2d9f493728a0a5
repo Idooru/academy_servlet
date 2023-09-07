@@ -1,0 +1,8 @@
+package sec01.ex01;
+
+public class DBInitailizer {
+	protected DBInitailizer() {
+		import javax.naming.Context;
+		import javax.naming.InitialContext;
+	}
+}

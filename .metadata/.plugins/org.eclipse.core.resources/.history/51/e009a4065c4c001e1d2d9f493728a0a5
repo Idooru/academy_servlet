@@ -1,0 +1,43 @@
+package sec01.ex01;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.sql.DataSource;
+
+public class LoginDAO extends DBInitializer {
+
+	private Connection conn;
+	private PreparedStatement pstmt;
+
+	public LoginDAO() {
+		super();
+	}
+
+	public void login(String id, String pwd) {
+		try {
+			connDB();
+			String query = "SELECT * FROM t_member WHERE id = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void connDB() {
+		try {
+			Class.forName(driver);
+			System.out.println("MySQL 드라이버 로딩 성공");
+			conn = DriverManager.getConnection(url, user, pwd);
+			System.out.println("Connection 생성 성공");
+//			pstmt = conn.prepareStatement();
+//			System.out.println("Statement 생성 성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

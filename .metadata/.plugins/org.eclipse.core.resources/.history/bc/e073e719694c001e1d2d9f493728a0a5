@@ -1,0 +1,49 @@
+package sec01.ex01;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class AuthDAO extends DBInitializer {
+
+	private Connection conn;
+	private PreparedStatement pstmt;
+
+	public AuthDAO() {
+		super();
+	}
+
+	public boolean login(String id, String pwd) {
+		boolean flag = false;
+		try {
+			conn = dataFactory.getConnection();
+			String query = "SELECT * FROM t_member WHERE id=?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String userId = rs.getString("id");
+				if (userId.equals(id)) {
+					String userPwd = rs.getString("pwd");
+					if (userPwd.equals(pwd)) {
+						System.out.println("로그인 성공");
+						flag = true;
+					}
+				}
+			} 
+
+			rs.close();
+			pstmt.close();
+			conn.close();
+
+			return false;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+}

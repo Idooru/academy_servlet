@@ -1,0 +1,21 @@
+package sec01.ex01;
+
+import java.sql.ResultSet;
+
+public class BookDAO extends DBInitializer {
+
+	public BookDAO() {
+		super();
+	}
+
+	public void searchBook(BookVO vo) {
+		try {
+			conn = dataFactory.getConnection();
+			String query = "SELECT * FROM books WHERE book_name LIKE concat('%', ?, '%')";
+			pstmt = conn.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
+		} catch (Exception e) {
+		}
+	}
+
+}
